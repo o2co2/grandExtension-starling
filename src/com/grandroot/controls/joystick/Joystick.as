@@ -173,6 +173,8 @@ package com.grandroot.controls.joystick
             _centerY = _baseImage.y + (_baseImage.height >> 1);
             _knob.originX = _centerX;
             _knob.originY = _centerY;
+			_knob.x = _knob.originX;
+			_knob.y = _knob.originY;
             var knobHalfWidth:Number = _knob.width >> 1;
             var knobHalfHeight:Number = _knob.height >> 1;
             var touchAreaHeight:Number = _baseImage.height / 3;
