@@ -6,7 +6,7 @@ package com.grandroot.controls.joystick
 
 	/**
 	 * 
-	 * @author Ossi
+	 * @author Ossi Rönnberg
 	 * 
 	 */
     public class JoystickKnob extends Sprite
@@ -20,8 +20,8 @@ package com.grandroot.controls.joystick
         {
             super();
             this.touchable = false;
-			this._knobImage = new Image(knobTexture);
-            this._knobImage.pivotX = this._knobImage.width >> 1;
+            this._knobImage = new Image(knobTexture);
+           	this._knobImage.pivotX = this._knobImage.width >> 1;
             this._knobImage.pivotY = this._knobImage.height >> 1;
             this.addChild(_knobImage);
         }
