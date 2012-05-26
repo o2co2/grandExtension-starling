@@ -197,9 +197,9 @@ package com.grandroot.controls.joystick
 
         private function onTouch(event:TouchEvent):void
         {
-            for (var i:int = 0; i < event.touches.length; ++i)
+            for (var i:int = 0; i < event.getTouches(this).length; ++i)
             {
-                var touch:Touch = event.touches[i];
+                var touch:Touch = event.getTouches(this)[i];
                 if (touch.phase == TouchPhase.BEGAN)
                 {
                     _isPressed = true;
@@ -213,7 +213,7 @@ package com.grandroot.controls.joystick
 
             if (_isPressed)
             {
-                touch = event.touches[0];
+                touch = event.getTouches(this)[0];
                 _knob.x = touch.globalX;
 
                 if (touch.globalX < _movementArea.left)
