@@ -3,6 +3,7 @@ package com.grandroot.controls.joystick
     import com.greensock.TweenLite;
     import com.greensock.easing.Bounce;
 
+    import flash.geom.Point;
     import flash.geom.Rectangle;
 
     import starling.core.Starling;
@@ -27,22 +28,6 @@ package com.grandroot.controls.joystick
             _baseImage.addEventListener(TouchEvent.TOUCH, onTouch);
         }
 
-        private var _right:Rectangle;
-
-        private var _left:Rectangle;
-
-        private var _up:Rectangle;
-
-        private var _down:Rectangle;
-
-        private var _upRight:Rectangle;
-
-        private var _downRight:Rectangle;
-
-        private var _downLeft:Rectangle;
-
-        private var _upLeft:Rectangle;
-
         private var _align:String = JoystickAlign.BOTTOM_LEFT;
 
         private var _baseImage:Image;
@@ -51,17 +36,33 @@ package com.grandroot.controls.joystick
 
         private var _centerY:int;
 
+        private var _down:Rectangle;
+
+        private var _downLeft:Rectangle;
+
+        private var _downRight:Rectangle;
+
         private var _isPressed:Boolean = false;
 
         private var _knob:JoystickKnob;
 
         private var _knobTween:TweenLite;
 
+        private var _left:Rectangle;
+
         private var _marginX:int;
 
         private var _marginY:int;
 
         private var _movementArea:Rectangle;
+
+        private var _right:Rectangle;
+
+        private var _up:Rectangle;
+
+        private var _upLeft:Rectangle;
+
+        private var _upRight:Rectangle;
 
         public function get align():String
         {
@@ -91,6 +92,11 @@ package com.grandroot.controls.joystick
         public function set marginY(value:int):void
         {
             _marginY = value;
+        }
+
+        public function get offset():Point
+        {
+            return new Point(((_knob.originX - _knob.x) / (_movementArea.width >> 1)) * -1, ((_knob.originY - _knob.y) / (_movementArea.height >> 1)) * -1);
         }
 
         public function get state():String
@@ -173,8 +179,8 @@ package com.grandroot.controls.joystick
             _centerY = _baseImage.y + (_baseImage.height >> 1);
             _knob.originX = _centerX;
             _knob.originY = _centerY;
-			_knob.x = _knob.originX;
-			_knob.y = _knob.originY;
+            _knob.x = _knob.originX;
+            _knob.y = _knob.originY;
             var knobHalfWidth:Number = _knob.width >> 1;
             var knobHalfHeight:Number = _knob.height >> 1;
             var touchAreaHeight:Number = _baseImage.height / 3;
