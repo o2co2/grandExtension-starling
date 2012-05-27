@@ -1,11 +1,11 @@
 package com.grandroot.controls.joystick
 {
     import com.greensock.TweenLite;
+    import com.greensock.data.TweenLiteVars;
     import com.greensock.easing.Bounce;
-
     import flash.geom.Point;
     import flash.geom.Rectangle;
-
+    import mx.effects.Tween;
     import starling.core.Starling;
     import starling.display.Image;
     import starling.display.Sprite;
@@ -42,6 +42,10 @@ package com.grandroot.controls.joystick
 
         private var _downRight:Rectangle;
 
+        private var _fadeTween:TweenLite = new TweenLite(this, 0.2, { alpha: 1, paused: true });
+
+        private var _hideWhenInactive:Boolean = false;
+
         private var _isPressed:Boolean = false;
 
         private var _knob:JoystickKnob;
@@ -72,6 +76,17 @@ package com.grandroot.controls.joystick
         public function set align(value:String):void
         {
             _align = value;
+        }
+
+        public function get hideWhenInactive():Boolean
+        {
+            return _hideWhenInactive;
+        }
+
+        public function set hideWhenInactive(value:Boolean):void
+        {
+            _hideWhenInactive = value;
+            alpha = 0;
         }
 
         public function get marginX():int
@@ -219,6 +234,11 @@ package com.grandroot.controls.joystick
 
             if (_isPressed)
             {
+                if (hideWhenInactive && alpha < 1)
+                {
+                    _fadeTween.play();
+                }
+
                 touch = event.getTouches(this)[0];
                 _knob.x = touch.globalX;
 
@@ -241,10 +261,11 @@ package com.grandroot.controls.joystick
                 {
                     _knob.y = _movementArea.bottom;
                 }
-
             }
-
-
+            else if (hideWhenInactive && alpha > 0)
+            {
+                _fadeTween.reverse();
+            }
         }
     }
 }
