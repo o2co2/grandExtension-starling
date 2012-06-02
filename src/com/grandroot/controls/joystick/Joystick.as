@@ -15,8 +15,19 @@ package com.grandroot.controls.joystick
     import starling.events.TouchPhase;
     import starling.textures.Texture;
 
+	/**
+	 * 
+	 * @author Ossi Rönnberg
+	 * 
+	 */
     public class Joystick extends Sprite
     {
+		/**
+		 * 
+		 * @param baseTexture  
+		 * @param knobTexture
+		 * 
+		 */
         public function Joystick(baseTexture:Texture, knobTexture:Texture)
         {
             super();
@@ -68,52 +79,104 @@ package com.grandroot.controls.joystick
 
         private var _upRight:Rectangle;
 
+		/**
+		 * Alignment of the joystick.
+		 * @return 
+		 * @see JoystickAligment
+		 * 
+		 */
         public function get align():String
         {
             return _align;
         }
 
+		/**
+		 * 
+		 * @param value
+		 * 
+		 */
         public function set align(value:String):void
         {
             _align = value;
         }
 
+		/**
+		 * Hides the joystick when it is not in use.
+		 * @return 
+		 * 
+		 */
         public function get hideWhenInactive():Boolean
         {
             return _hideWhenInactive;
         }
 
+		/**
+		 * 
+		 * @param value
+		 * 
+		 */
         public function set hideWhenInactive(value:Boolean):void
         {
             _hideWhenInactive = value;
             alpha = 0;
         }
 
+		/**
+		 * 
+		 * @return 
+		 * 
+		 */
         public function get marginX():int
         {
             return _marginX;
         }
 
+		/**
+		 * 
+		 * @param value
+		 * 
+		 */
         public function set marginX(value:int):void
         {
             _marginX = value;
         }
 
+		/**
+		 * Margin from the edge of stage in x-axis. 
+		 * @return 
+		 * 
+		 */
         public function get marginY():int
         {
             return _marginY;
         }
 
+		/**
+		 * Margin from the edge of stage in y-axis.
+		 * @param value
+		 * 
+		 */
         public function set marginY(value:int):void
         {
             _marginY = value;
         }
 
+		/**
+		 * Offset of the joystick knob in normalized vector between -1 and -1. This can be used to control movement more precisely.
+		 * @return 
+		 * 
+		 */
         public function get offset():Point
         {
             return new Point(((_knob.originX - _knob.x) / (_movementArea.width >> 1)) * -1, ((_knob.originY - _knob.y) / (_movementArea.height >> 1)) * -1);
         }
 
+		/**
+		 * State of the joystick.
+		 * @return 
+		 * @see JoystickState
+		 * 
+		 */
         public function get state():String
         {
             if (_isPressed)

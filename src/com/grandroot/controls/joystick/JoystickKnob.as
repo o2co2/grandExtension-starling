@@ -12,7 +12,7 @@ package com.grandroot.controls.joystick
     public class JoystickKnob extends Sprite
     {
 		/**
-		 * 
+		 * JoystickKnob. You shouldn't have to use this class directly.
 		 * @param knobTexture
 		 * 
 		 */

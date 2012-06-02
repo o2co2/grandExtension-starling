@@ -8,3 +8,4 @@ bin-release/
 .settings/
 .project
 /.flexLibProperties
+/libs
