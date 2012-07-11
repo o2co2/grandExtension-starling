@@ -43,5 +43,45 @@ package com.grandroot.tmx
 				_custom = _custom ? _custom.extend(node) : new TMXPropertySet(node);
 			}
 		}
+
+		public function get gid():int
+		{
+			return _gid;
+		}
+
+		public function get group():TMXObjectGroup
+		{
+			return _group;
+		}
+
+		public function get height():int
+		{
+			return _height;
+		}
+
+		public function get name():String
+		{
+			return _name;
+		}
+
+		public function get type():String
+		{
+			return _type;
+		}
+
+		public function get width():int
+		{
+			return _width;
+		}
+
+		public function get x():int
+		{
+			return _x;
+		}
+
+		public function get y():int
+		{
+			return _y;
+		}
 	}
 }

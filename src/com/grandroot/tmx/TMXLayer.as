@@ -91,6 +91,57 @@ package com.grandroot.tmx
 			}
 		}
 
+
+		public function get height():uint
+		{
+			return _height;
+		}
+
+		public function get name():String
+		{
+			return _name;
+		}
+
+		public function get opacity():Number
+		{
+			return _opacity;
+		}
+
+		public function get parent():TMXMap
+		{
+			return _parent;
+		}
+
+		public function get properties():TMXPropertySet
+		{
+			return _properties;
+		}
+
+		public function get tileGIDs():Array
+		{
+			return _tileGIDs;
+		}
+
+		public function get visible():Boolean
+		{
+			return _visible;
+		}
+
+		public function get width():uint
+		{
+			return _width;
+		}
+
+		public function get x():int
+		{
+			return _x;
+		}
+
+		public function get y():int
+		{
+			return _y;
+		}
+
 		public static function base64ToArray(chunk:String, lineWidth:int, compressed:Boolean):Array
 		{
 			var result:Array = [];

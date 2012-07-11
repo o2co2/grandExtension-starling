@@ -34,6 +34,11 @@ package com.grandroot.tmx
 			}
 		}
 
+		public function get firstGID():uint
+		{
+			return _firstGID;
+		}
+
 		public function fromGid(gid:int):int
 		{
 			return gid - _firstGID;
@@ -49,17 +54,35 @@ package com.grandroot.tmx
 			return _tileProperties[gid - _firstGID];
 		}
 
-		/*
-		public function getRect(id:int):Rectangle
+		public function get margin():uint
 		{
-			return new Rectangle((id % numCols) * _tileWidth, (id / numCols) * _tileHeight);
+			return _margin;
 		}
 
-		public function hasGid(gid:int):Boolean
+		public function get name():String
 		{
-			return (gid >= _firstGID) && (gid < _firstGID + numTiles);
+			return _name;
 		}
-		*/
+
+		public function get spacing():uint
+		{
+			return _spacing;
+		}
+
+		public function get tileHeight():uint
+		{
+			return _tileHeight;
+		}
+
+		public function get tileProperties():Array
+		{
+			return _tileProperties;
+		}
+
+		public function get tileWidth():uint
+		{
+			return _tileWidth;
+		}
 
 		public function toGid(id:int):int
 		{

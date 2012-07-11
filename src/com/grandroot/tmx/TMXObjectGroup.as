@@ -37,10 +37,54 @@ package com.grandroot.tmx
 			}
 		}
 
+		public function get height():uint
+		{
+			return _height;
+		}
+
 		public function get map():TMXMap
 		{
 			return _map;
 		}
 
+		public function get name():String
+		{
+			return _name;
+		}
+
+		public function get objects():Array
+		{
+			return _objects;
+		}
+
+		public function get opacity():Number
+		{
+			return _opacity;
+		}
+
+		public function get properties():TMXPropertySet
+		{
+			return _properties;
+		}
+
+		public function get visible():Boolean
+		{
+			return _visible;
+		}
+
+		public function get width():uint
+		{
+			return _width;
+		}
+
+		public function get x():int
+		{
+			return _x;
+		}
+
+		public function get y():int
+		{
+			return _y;
+		}
 	}
 }

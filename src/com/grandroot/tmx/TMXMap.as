@@ -56,10 +56,54 @@ package com.grandroot.tmx
 			}
 		}
 
+		public function get height():uint
+		{
+			return _height;
+		}
+
+		public function get layers():Object
+		{
+			return _layers;
+		}
+
+		public function get objectGroups():Object
+		{
+			return _objectGroups;
+		}
+
+		public function get orientation():String
+		{
+			return _orientation;
+		}
+
+		public function get properties():TMXPropertySet
+		{
+			return _properties;
+		}
+
+		public function get tileHeight():uint
+		{
+			return _tileHeight;
+		}
+
+		public function get tileWidth():uint
+		{
+			return _tileWidth;
+		}
+
 		public function get tilesets():Object
 		{
 			return _tilesets;
 		}
 
+		public function get version():String
+		{
+			return _version;
+		}
+
+		public function get width():uint
+		{
+			return _width;
+		}
 	}
 }
