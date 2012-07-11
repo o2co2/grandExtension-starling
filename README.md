@@ -11,9 +11,7 @@ Virtual joystick component.
 
 [Demo](http://grandroot.com/showcase/joystick/)
 
-### StateManager
-
-Simple state manager.
+### TMX parser
 
 ## Depencies
 
