@@ -1,15 +1,18 @@
 package com.grandroot.tmx
 {
 	import flash.geom.Rectangle;
+	import starling.textures.Texture;
 
 	public class TMXTileset
 	{
 		private var _firstGID:uint = 0;
 		private var _margin:uint;
 		private var _name:String;
+		private var _numTiles:int = 0xFFFFFF;
 		private var _parent:TMXMap;
 		private var _source:String;
 		private var _spacing:uint;
+		private var _texture:Texture;
 		private var _tileHeight:uint;
 		private var _tileProperties:Array = [];
 		private var _tileWidth:uint;
@@ -30,6 +33,7 @@ package com.grandroot.tmx
 				if (node.properties[0])
 				{
 					_tileProperties[int(node.@id)] = new TMXPropertySet(node.properties[0]);
+					_numTiles++;
 				}
 			}
 		}
@@ -52,6 +56,11 @@ package com.grandroot.tmx
 		public function getPropertiesByGid(gid:int):TMXPropertySet
 		{
 			return _tileProperties[gid - _firstGID];
+		}
+
+		public function hasGid(gid:int):Boolean
+		{
+			return (gid >= firstGID) && (gid < firstGID + _numTiles);
 		}
 
 		public function get margin():uint

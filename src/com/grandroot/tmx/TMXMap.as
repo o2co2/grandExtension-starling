@@ -105,5 +105,16 @@ package com.grandroot.tmx
 		{
 			return _width;
 		}
+		
+		public function getGidOwner(gid:int):TMXTileset
+		{
+			var last:TMXTileset = null;
+			for each(var tileset:TMXTileset in tilesets)
+			{
+				if(tileset.hasGid(gid))
+					return tileset;
+			}
+			return null;
+		}
 	}
 }
