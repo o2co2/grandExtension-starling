@@ -1,7 +1,7 @@
 package com.grandroot.tmx
 {
 
-	public class TMXObject
+	public dynamic class TMXObject
 	{
 		private var _custom:TMXPropertySet;
 		private var _gid:int;
@@ -18,7 +18,7 @@ package com.grandroot.tmx
 		{
 			_group = parent;
 			_name = source.@name ? source.@name : "";
-			_type = source.@type ? source.@type : "unknown";
+			_type = source.@type ? source.@type : "";
 			_x = source.@x ? source.@x : 0;
 			_y = source.@y ? source.@y : 0;
 			_width = source.@width ? source.@width : 0;
@@ -41,6 +41,21 @@ package com.grandroot.tmx
 			for each (node in source.properties)
 			{
 				_custom = _custom ? _custom.extend(node) : new TMXPropertySet(node);
+			}
+
+			node = source.descendants()[0];
+
+			if (node.name() == "polygon")
+			{
+				this['polygon'] = new TMXPolygon(node, this);
+			}
+			else if (node.name() == "polyline")
+			{
+				//TODO 
+			}
+			else if (node.name() == "image")
+			{
+				//TODO 
 			}
 		}
 
