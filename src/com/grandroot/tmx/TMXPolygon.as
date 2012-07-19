@@ -16,14 +16,21 @@ package com.grandroot.tmx
 				var dataString:String = source.@points;
 				var dataArray:Array = dataString.split(" ");
 				var pointString:String;
+				var commaIndex:int;
 
 				for (var i:int = 0; i < dataArray.length; ++i)
 				{
 					pointString = dataArray[i];
-					_points.push(new Point(Number(pointString.slice(0, pointString.search(","))), Number(pointString.slice(pointString.search(",") + 1, pointString.length))));
-
+					commaIndex = pointString.search(",");
+					_points.push(new Point(Number(pointString.slice(0, commaIndex)), Number(pointString.slice(commaIndex + 1, pointString.length))));
 				}
 			}
 		}
+
+		public function get points():Array
+		{
+			return _points;
+		}
+
 	}
 }

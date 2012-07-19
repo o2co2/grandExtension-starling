@@ -2,12 +2,21 @@ package com.grandroot.display
 {
 	import com.grandroot.tmx.TMXLayer;
 	import com.grandroot.tmx.TMXMap;
+	import com.grandroot.tmx.TMXObject;
+	import com.grandroot.tmx.TMXObjectGroup;
+	import com.grandroot.tmx.TMXPolygon;
 	import com.grandroot.tmx.TMXPropertySet;
 	import com.grandroot.tmx.TMXTileset;
-	
-	import mx.charts.CategoryAxis;
-	import mx.containers.Tile;
-	
+	import flash.geom.Point;
+	import nape.geom.GeomPoly;
+	import nape.geom.GeomPolyList;
+	import nape.geom.Vec2;
+	import nape.phys.Body;
+	import nape.phys.BodyType;
+	import nape.shape.Polygon;
+	import nape.shape.ValidationResult;
+	import nape.space.Space;
+	import starling.core.Starling;
 	import starling.display.Image;
 	import starling.display.QuadBatch;
 	import starling.display.Sprite;
@@ -16,8 +25,19 @@ package com.grandroot.display
 
 	public class Level extends Sprite
 	{
-		public function Level(atlas:TextureAtlas, map:TMXMap)
+		private var _map:TMXMap;
+		private var _obstacles:Body;
+		private var _space:Space;
+
+		public function Level(atlas:TextureAtlas, map:TMXMap, space:Space = null)
 		{
+			_map = map;
+
+			if (space)
+			{
+				_space = space;
+			}
+
 			// assign tiles textures
 			var tileset:TMXTileset;
 			var propertySet:TMXPropertySet;
@@ -58,7 +78,6 @@ package com.grandroot.display
 					for (column = 0; column < (layer.tileGIDs[row] as Array).length; ++column)
 					{
 						columnGID = layer.tileGIDs[row][column];
-						trace(columnGID);
 						tileset = null;
 						tileset = map.getGidOwner(columnGID);
 
@@ -80,8 +99,58 @@ package com.grandroot.display
 						}
 					}
 				}
-				
+
 				addChild(layerQB);
+			}
+
+			var objectgroup:TMXObjectGroup;
+			var object:TMXObject;
+
+			// object groups
+			for each (objectgroup in map.objectGroups)
+			{
+				trace(objectgroup.name);
+
+				if (objectgroup.name == 'obstacles')
+				{
+					_obstacles = new Body(BodyType.STATIC);
+
+					for each (object in objectgroup.objects)
+					{
+						if (object.polygon)
+						{
+							var tmxPolygon:TMXPolygon = object.polygon as TMXPolygon;
+							var vertices:Vector.<Vec2> = new Vector.<Vec2>;
+
+							for each (var point:Point in tmxPolygon.points)
+							{
+								vertices.push(new Vec2(point.x / 2, point.y / 2));
+							}
+
+							if (vertices.length > 0)
+							{
+								var polygon:Polygon = new Polygon(vertices);
+
+								if (polygon.validity() == ValidationResult.VALID)
+								{
+									_obstacles.shapes.add(polygon);
+								}
+								else if (polygon.validity() == ValidationResult.CONCAVE)
+								{
+									var concave:GeomPoly = new GeomPoly(vertices);
+									var convex:GeomPolyList = concave.convex_decomposition();
+									convex.foreach(function(p:GeomPoly):void {_obstacles.shapes.add(new Polygon(p));});
+								}
+								else
+								{
+									trace("invalid polygon");
+								}
+							}
+						}
+					}
+
+					_obstacles.space = space;
+				}
 			}
 		}
 	}

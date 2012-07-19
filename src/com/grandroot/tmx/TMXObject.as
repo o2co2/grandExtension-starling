@@ -45,17 +45,26 @@ package com.grandroot.tmx
 
 			node = source.descendants()[0];
 
-			if (node.name() == "polygon")
+			if (node)
 			{
-				this['polygon'] = new TMXPolygon(node, this);
-			}
-			else if (node.name() == "polyline")
-			{
-				//TODO 
-			}
-			else if (node.name() == "image")
-			{
-				//TODO 
+				var nodeName:String = node.name();
+
+				if (nodeName == "polygon")
+				{
+					this['polygon'] = new TMXPolygon(node, this);
+				}
+				else if (nodeName == "polyline")
+				{
+					//TODO 
+				}
+				else if (nodeName == "image")
+				{
+					//TODO 
+				}
+				else
+				{
+					trace("unkown data");
+				}
 			}
 		}
 
