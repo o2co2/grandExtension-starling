@@ -4,7 +4,7 @@ package com.grandroot.display
 	import com.grandroot.tmx.TMXMap;
 	import com.grandroot.tmx.TMXPropertySet;
 	import com.grandroot.tmx.TMXTileset;
-	import mx.containers.Tile;
+	
 	import starling.display.Image;
 	import starling.display.QuadBatch;
 
