@@ -4,14 +4,26 @@ package com.grandroot.display
 	import com.grandroot.tmx.TMXMap;
 	import com.grandroot.tmx.TMXPropertySet;
 	import com.grandroot.tmx.TMXTileset;
-	
 	import starling.display.Image;
 	import starling.display.QuadBatch;
 
+	/**
+	 * Tilemap
+	 * @author Ossi Rönnberg
+	 *
+	 */
 	public class Tilemap extends QuadBatch
 	{
-		public function Tilemap(layer:TMXLayer, map:TMXMap)
+		/**
+		 * Creates a quadbatch from the <code>TMXLayer</code> object that can be added to the Starling's stage.
+		 * @param layer
+		 *
+		 */
+		public function Tilemap(layer:TMXLayer)
 		{
+			touchable = false;
+
+			var map:TMXMap = layer.parent;
 			var row:int;
 			var column:int;
 			var columnGID:int;
