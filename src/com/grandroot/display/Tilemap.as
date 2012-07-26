@@ -23,7 +23,15 @@ package com.grandroot.display
 		{
 			touchable = false;
 
-			var map:TMXMap = layer.parent;
+			if (layer.parent)
+			{
+				var map:TMXMap = layer.parent;
+			}
+			else
+			{
+				throw new Error("Layer does not have parent.");
+			}
+
 			var row:int;
 			var column:int;
 			var columnGID:int;
